@@ -1,0 +1,15 @@
+digraph Classes {
+ graph [rankdir=LR, bgcolor="white", pad=.3, nodesep=.5];
+ node [shape=record, style="rounded,filled", fillcolor="#eaf2ff", color="#7294c8", fontname="DejaVu Sans", fontsize=11];
+ edge [fontname="DejaVu Sans", color="#64748b"];
+ TCPServer [label="{TCPServer|+ main(args)}"];
+ ServerApp [label="{ServerApp|+ start(stage)\l+ stop()\l}"];
+ ServerCore [label="{ServerCore|- clients: Map\l+ start()\l+ close()\l+ boundPort()\l}"];
+ ClientHandler [label="{ClientHandler|+ username\l+ send(text)\l}"];
+ TCPClient [label="{TCPClient|+ main(args)}"];
+ ClientApp [label="{ClientApp|+ start(stage)\l+ stop()\l}"];
+ ClientConnection [label="{ClientConnection|+ connect(...)\l+ sendMessage(text)\l+ requestUsers()\l+ close()\l}"];
+ TCPServer -> ServerApp; ServerApp -> ServerCore; ServerCore -> ClientHandler [label="0..*", arrowhead=diamond];
+ TCPClient -> ClientApp;ClientApp -> ClientConnection;
+ ClientConnection -> ServerCore [style=dashed,label="TCP protocol"];
+}

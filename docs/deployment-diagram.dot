@@ -1,0 +1,8 @@
+digraph Deployment {
+ graph [rankdir=LR, bgcolor="white", pad=.3, nodesep=.6];
+ node [shape=box,style="rounded,filled",fillcolor="#eaf2ff",color="#7294c8",fontname="DejaVu Sans"];
+ edge [color="#64748b",fontname="DejaVu Sans"];
+ subgraph cluster_server {label="Server computer";style="rounded";color="#64748b";server[label="TCPServer.jar\nSocket :3000",fillcolor="#d6edff"];}
+ subgraph cluster_clients {label="Client computers";style="rounded";color="#64748b";alice[label="TCPClient.jar\nAlice"];bob[label="TCPClient.jar\nBob"];guest[label="TCPClient.jar\nGuest (read-only)"];}
+ alice -> server [label="TCP/IP"];bob -> server [label="TCP/IP"];guest -> server [label="TCP/IP"];
+}

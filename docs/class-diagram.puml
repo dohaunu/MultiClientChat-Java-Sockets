@@ -1,0 +1,24 @@
+@startuml
+class TCPServer { +main(args) }
+class ServerApp { +start(stage)
++stop() }
+class ServerCore { -clients : Map
++start()
++close()
++boundPort() }
+class ClientHandler { +username
++send(text) }
+class TCPClient { +main(args) }
+class ClientApp { +start(stage)
++stop() }
+class ClientConnection { +connect(host,port,username,events)
++sendMessage(text)
++requestUsers()
++close() }
+TCPServer --> ServerApp
+ServerApp --> ServerCore
+ServerCore "1" *-- "0..*" ClientHandler
+TCPClient --> ClientApp
+ClientApp --> ClientConnection
+ClientConnection ..> ServerCore : TCP protocol
+@enduml

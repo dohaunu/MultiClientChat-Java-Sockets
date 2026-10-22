@@ -1,0 +1,11 @@
+@startuml
+node "Server computer" { artifact "TCPServer.jar" as server
+component "TCP Server Socket :3000" as socket
+server --> socket }
+node "Client computer A" { artifact "TCPClient.jar" as a }
+node "Client computer B" { artifact "TCPClient.jar" as b }
+node "Client computer C" { artifact "TCPClient.jar (Guest)" as c }
+a --> socket : TCP/IP
+b --> socket : TCP/IP
+c --> socket : TCP/IP (read-only)
+@enduml
